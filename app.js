@@ -17,7 +17,7 @@
     zh: {
       languageAria: "界面语言",
       selectSchoolTitle: "选择所属学校",
-      selectSchoolHelp: "模板决定左侧品牌标识，个人资料保持一致。",
+      selectSchoolHelp: "模板决定右侧学校标志，个人资料保持一致。",
       schoolAria: "学校类型",
       detailsTitle: "填写个人资料",
       detailsHelp: "所有资料仅用于生成你的邮件签名。",
@@ -52,7 +52,7 @@
     en: {
       languageAria: "Interface language",
       selectSchoolTitle: "Choose your school",
-      selectSchoolHelp: "The template controls the brand identity while your personal details stay consistent.",
+      selectSchoolHelp: "The template controls the school logo while your personal details stay consistent.",
       schoolAria: "School type",
       detailsTitle: "Enter your details",
       detailsHelp: "Your information is used only to create your email signature.",
@@ -178,12 +178,12 @@
     const sourceX = Math.round((bitmap.width - size) / 2);
     const sourceY = Math.round((bitmap.height - size) / 2);
     const canvas = document.createElement("canvas");
-    canvas.width = 118;
-    canvas.height = 118;
+    canvas.width = 128;
+    canvas.height = 128;
     const context = canvas.getContext("2d", { alpha: false });
     context.fillStyle = "#ffffff";
-    context.fillRect(0, 0, 118, 118);
-    context.drawImage(bitmap, sourceX, sourceY, size, size, 0, 0, 118, 118);
+    context.fillRect(0, 0, 128, 128);
+    context.drawImage(bitmap, sourceX, sourceY, size, size, 0, 0, 128, 128);
     bitmap.close();
 
     let quality = 0.78;

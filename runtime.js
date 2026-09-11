@@ -2,11 +2,12 @@
 (function () {
   const profileKey = "etonhouse.signature.profile.v1";
   const productionAssetFallback = "https://liamhu4650.github.io/etonhouse-signature/assets/";
+  const assetRevision = "20260911-new-template";
   const schools = {
-    hq: { label: "HQ 总部", logoAsset: "school-hq.png" },
-    ebridge: { label: "E-Bridge Pre-School", logoAsset: "school-ebridge.png" },
-    international: { label: "International School", logoAsset: "school-international.png" },
-    preschool: { label: "EtonHouse Pre-School", logoAsset: "school-preschool.png" },
+    hq: { label: "HQ 总部", logoAsset: "school-hq.png", logoWidth: 184 },
+    ebridge: { label: "E-Bridge Pre-School", logoAsset: "school-ebridge.png", logoWidth: 184 },
+    international: { label: "International School", logoAsset: "school-international.png", logoWidth: 196 },
+    preschool: { label: "EtonHouse Pre-School", logoAsset: "school-preschool.png", logoWidth: 188 },
   };
 
   function escapeHtml(value) {
@@ -24,26 +25,25 @@
   }
 
   function assetUrl(base, fileName) {
-    return `${String(base || productionAssetFallback).replace(/\/?$/, "/")}${fileName}`;
+    return `${String(base || productionAssetFallback).replace(/\/?$/, "/")}${fileName}?v=${assetRevision}`;
   }
 
   function infoRow(iconAsset, value, href, assetBase) {
     if (!value) return "";
     const content = href
-      ? `<a href="${escapeHtml(href)}" style="color:#6b6b6b;text-decoration:none">${escapeHtml(value)}</a>`
+      ? `<a href="${escapeHtml(href)}" style="color:#666666;text-decoration:none">${escapeHtml(value)}</a>`
       : escapeHtml(value);
-    return `<tr><td width="27" style="width:27px;padding:2px 0;vertical-align:top"><img src="${escapeHtml(assetUrl(assetBase, iconAsset))}" width="20" alt="" style="display:block;width:20px;height:auto;border:0" /></td><td style="padding:2px 0;color:#6b6b6b;font-family:Arial,sans-serif;font-size:12px;font-weight:700;line-height:20px;vertical-align:top">${content}</td></tr>`;
+    return `<tr><td width="16" style="width:16px;padding:2px 0 1px 2px;vertical-align:middle"><img src="${escapeHtml(assetUrl(assetBase, iconAsset))}" width="10" height="10" alt="" style="display:block;width:10px;height:10px;border:0" /></td><td style="padding:0;color:#666666;font-family:'Times New Roman',Times,serif;font-size:10pt;font-weight:400;line-height:12pt;vertical-align:middle">${content}</td></tr>`;
   }
 
   function buildSignatureHtml(data, photoFileName) {
     const school = schools[data.school] || schools.hq;
     const assetBase = data.assetBaseUrl || productionAssetFallback;
-    const changePhotoLabel = data.uiLanguage === "en" ? "CHANGE PHOTO" : "更换照片";
     const photo = photoFileName
-      ? `<img src="cid:${escapeHtml(photoFileName)}" width="118" height="118" alt="${escapeHtml(data.name)}" style="display:block;width:118px;height:118px;border:0" />`
-      : `<div style="display:table-cell;width:118px;height:118px;color:#fff;background:#d71920;font-family:Microsoft YaHei,Arial,sans-serif;font-size:17px;text-align:center;vertical-align:middle">${changePhotoLabel}</div>`;
+      ? `<img src="cid:${escapeHtml(photoFileName)}" width="128" height="128" alt="${escapeHtml(data.name)}" style="display:block;width:128px;height:128px;border:0" />`
+      : `<div style="display:block;width:128px;height:128px;background:#156082;font-size:0;line-height:0">&nbsp;</div>`;
 
-    return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="width:728px;border-collapse:collapse;background:#fff;font-family:Arial,sans-serif"><tr><td width="138" style="width:138px;padding:0 18px 0 0;vertical-align:top">${photo}<div style="padding-top:11px;text-align:center"><img src="${escapeHtml(assetUrl(assetBase, school.logoAsset))}" width="124" alt="${escapeHtml(school.label)}" style="display:block;width:124px;height:auto;border:0" /></div><div style="padding-top:12px"><img src="${escapeHtml(assetUrl(assetBase, "social-icons.png"))}" width="118" alt="Social media" style="display:block;width:118px;height:auto;border:0" /></div></td><td style="padding:2px 0 0;vertical-align:top"><div style="color:#666;font-size:25px;font-weight:700;line-height:29px">${escapeHtml(data.name)}</div><div style="margin-top:2px;color:#666;font-size:16px;line-height:20px">${escapeHtml(data.title)}</div><div style="margin-top:2px;color:#666;font-size:16px;line-height:20px">${escapeHtml(data.organization)}</div><div style="height:12px;border-bottom:2px solid #d71920"></div><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:9px;border-collapse:collapse">${infoRow("icon-phone.png", data.phone, data.phone ? `tel:${String(data.phone).replace(/\s/g, "")}` : "", assetBase)}${infoRow("icon-email.png", data.email, data.email ? `mailto:${data.email}` : "", assetBase)}${infoRow("icon-web.png", data.website, normalizedUrl(data.website), assetBase)}${infoRow("icon-address.png", data.address, "", assetBase)}</table></td></tr><tr><td colspan="2" style="padding-top:12px"><img src="${escapeHtml(assetUrl(assetBase, "brand-family.png"))}" width="700" alt="EtonHouse family of schools" style="display:block;width:700px;height:auto;border:0" /></td></tr></table>`;
+    return `<table role="presentation" width="760" cellpadding="0" cellspacing="0" border="0" style="width:760px;border-collapse:collapse;background:#ffffff;font-family:'Times New Roman',Times,serif"><tr><td width="12" height="148" style="width:12px;height:148px;font-size:0;line-height:0">&nbsp;</td><td width="128" height="148" style="width:128px;height:148px;padding:14px 0 6px;vertical-align:top">${photo}</td><td width="20" height="148" style="width:20px;height:148px;font-size:0;line-height:0">&nbsp;</td><td width="348" height="148" style="width:348px;height:148px;padding:5px 0 0;vertical-align:top"><div style="color:#666666;font-family:'Times New Roman',Times,serif;font-size:16pt;font-weight:700;line-height:19pt;white-space:nowrap">${escapeHtml(data.name)}</div><div style="color:#666666;font-family:'Times New Roman',Times,serif;font-size:12pt;font-weight:400;line-height:15pt;white-space:nowrap">${escapeHtml(data.title)}</div><div style="color:#666666;font-family:'Times New Roman',Times,serif;font-size:12pt;font-weight:400;line-height:15pt;white-space:nowrap">${escapeHtml(data.organization)}</div><table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:6px;border-collapse:collapse">${infoRow("icon-phone.png", data.phone, data.phone ? `tel:${String(data.phone).replace(/\s/g, "")}` : "", assetBase)}${infoRow("icon-email.png", data.email, data.email ? `mailto:${data.email}` : "", assetBase)}${infoRow("icon-web.png", data.website, normalizedUrl(data.website), assetBase)}${infoRow("icon-address.png", data.address, "", assetBase)}</table></td><td width="252" height="148" style="width:252px;height:148px;padding:8px 0 0;vertical-align:middle"><img src="${escapeHtml(assetUrl(assetBase, school.logoAsset))}" width="${school.logoWidth}" alt="${escapeHtml(school.label)}" style="display:block;width:${school.logoWidth}px;height:auto;border:0" /></td></tr><tr><td colspan="5" style="padding:0"><img src="${escapeHtml(assetUrl(assetBase, "brand-family.png"))}" width="760" height="47" alt="EtonHouse family of schools" style="display:block;width:760px;height:47px;border:0" /></td></tr></table>`;
   }
 
   function complete(event) {

@@ -5,12 +5,13 @@
 ## 当前原型
 
 - 四种学校类型：HQ、E-Bridge Pre-School、International School、EtonHouse Pre-School。
-- 上传照片后自动居中裁剪为 118 × 118，并压缩至适合 Outlook roaming settings 的大小。
+- 上传照片后自动居中裁剪为 128 × 128，并压缩至适合 Outlook roaming settings 的大小。
 - 姓名、职位、机构、电话、邮箱、网站和地址实时预览。
 - 浏览器中使用本地预览存储；运行在 Outlook 中时使用 `Office.context.roamingSettings`。
 - `OnNewMessageCompose` 事件自动调用 `setSignatureAsync()`。
 - 个人照片通过 CID 内嵌附件加入邮件，不需要图片服务器或数据库。
-- 学校 Logo、社交图标、联系方式图标和底部品牌条均从提供的四张正式模板中精确提取。
+- 新模板采用左侧蓝色照片区、中部个人资料、右侧学校 Logo 和底部五品牌条。
+- 学校 Logo、联系方式图标和底部品牌条均直接取自最新 PowerPoint 模板。
 
 ## 本地预览
 
