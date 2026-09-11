@@ -279,7 +279,7 @@ input:focus, textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rg
   width: 760px;
   min-width: 760px;
   margin: auto;
-  padding: 16px;
+  padding: 0;
   color: #666;
   background: white;
   box-shadow: 0 16px 40px rgba(0,0,0,.18);
