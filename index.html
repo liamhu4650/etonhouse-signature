@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="EtonHouse Outlook 电子邮件签名制作器" />
+    <title>EtonHouse Signature Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">EtonHouse</p>
+        <h1>Email Signature Studio</h1>
+      </div>
+      <div class="header-actions">
+        <div class="language-switch" role="group" aria-label="界面语言" data-i18n-aria="languageAria">
+          <button type="button" data-language="zh" aria-pressed="true">中文</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-language="en" aria-pressed="false">EN</button>
+        </div>
+        <div class="header-status" id="connection-status"><span></span><b>浏览器预览</b></div>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="editor-panel" aria-labelledby="editor-title">
+        <div class="section-heading">
+          <div>
+            <span class="step-number">01</span>
+            <h2 id="editor-title" data-i18n="selectSchoolTitle">选择所属学校</h2>
+          </div>
+          <p data-i18n="selectSchoolHelp">模板决定左侧品牌标识，个人资料保持一致。</p>
+        </div>
+
+        <div class="school-grid" id="school-options" role="radiogroup" aria-label="学校类型" data-i18n-aria="schoolAria"></div>
+
+        <div class="section-heading details-heading">
+          <div>
+            <span class="step-number">02</span>
+            <h2 data-i18n="detailsTitle">填写个人资料</h2>
+          </div>
+          <p data-i18n="detailsHelp">所有资料仅用于生成你的邮件签名。</p>
+        </div>
+
+        <form id="signature-form">
+          <div class="photo-row">
+            <label class="photo-picker" for="photo-input">
+              <img id="photo-thumb" alt="个人照片预览" data-i18n-alt="photoAlt" hidden />
+              <span class="photo-placeholder" id="photo-placeholder">
+                <strong data-i18n="uploadPhoto">上传照片</strong>
+                <small data-i18n="squarePhoto">建议使用正方形证件照</small>
+              </span>
+            </label>
+            <input id="photo-input" type="file" accept="image/png,image/jpeg,image/webp" hidden />
+            <div class="photo-copy">
+              <strong data-i18n="personalPhoto">个人照片</strong>
+              <p data-i18n="photoHelp">上传后会自动居中裁剪并压缩，确保可以随 M365 签名同步。</p>
+              <button class="text-button" type="button" id="remove-photo" data-i18n="removePhoto" hidden>移除照片</button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              <span data-i18n="nameLabel">姓名</span>
+              <input name="name" autocomplete="name" value="Alex Chen" required />
+            </label>
+            <label>
+              <span data-i18n="titleLabel">职位 / Title</span>
+              <input name="title" value="Marketing Manager" required />
+            </label>
+            <label class="full-width">
+              <span data-i18n="organizationLabel">学校或机构名称</span>
+              <input name="organization" value="EtonHouse International Education Group (China)" required />
+            </label>
+            <label>
+              <span data-i18n="phoneLabel">电话</span>
+              <input name="phone" autocomplete="tel" value="+86 000 0000 0000" />
+            </label>
+            <label>
+              <span data-i18n="emailLabel">邮箱</span>
+              <input name="email" autocomplete="email" type="email" value="alex.chen@example.com" required />
+            </label>
+            <label>
+              <span data-i18n="websiteLabel">官方网站</span>
+              <input name="website" value="www.example.com" />
+            </label>
+            <label class="full-width">
+              <span data-i18n="addressLabel">地址</span>
+              <textarea name="address" rows="2">123 Example Road, Suzhou</textarea>
+            </label>
+          </div>
+        </form>
+      </section>
+
+      <section class="preview-panel" aria-labelledby="preview-title">
+        <div class="preview-toolbar">
+          <div>
+            <span class="step-number inverse">03</span>
+            <h2 id="preview-title" data-i18n="previewTitle">实时预览</h2>
+          </div>
+          <span class="preview-size" data-i18n="previewSize">邮件显示宽度 · 760 px</span>
+        </div>
+
+        <div class="preview-stage">
+          <div id="signature-preview" class="signature-preview" aria-live="polite"></div>
+        </div>
+
+        <div class="preview-note">
+          <span>✓</span>
+          <p><strong data-i18n="safeTitle">Outlook 安全排版</strong><br /><span data-i18n="safeCopy">签名使用邮件兼容的表格与行内样式生成，不依赖截图。</span></p>
+        </div>
+
+        <button class="primary-button" id="save-button" type="button">
+          <span data-i18n="saveBrowserTitle">保存我的签名</span>
+          <small data-i18n="saveBrowserHelp">当前保存到浏览器；接入 Outlook 后保存到 M365 邮箱</small>
+        </button>
+        <p class="save-message" id="save-message" role="status"></p>
+      </section>
+    </main>
+
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script src="signature.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
