@@ -23,9 +23,9 @@
       detailsHelp: "所有资料仅用于生成你的邮件签名。",
       photoAlt: "个人照片预览",
       uploadPhoto: "上传照片",
-      squarePhoto: "建议使用正方形证件照",
+      squarePhoto: "建议使用竖版或正方形证件照",
       personalPhoto: "个人照片",
-      photoHelp: "上传后会自动居中裁剪并压缩，确保可以随 M365 签名同步。",
+      photoHelp: "竖版照片会自动向上取景，保留头顶，并以高清尺寸压缩后随 M365 签名同步。",
       removePhoto: "移除照片",
       nameLabel: "姓名",
       titleLabel: "职位 / Title",
@@ -58,9 +58,9 @@
       detailsHelp: "Your information is used only to create your email signature.",
       photoAlt: "Personal photo preview",
       uploadPhoto: "Upload photo",
-      squarePhoto: "A square headshot is recommended",
+      squarePhoto: "A portrait or square headshot is recommended",
       personalPhoto: "Personal photo",
-      photoHelp: "Your photo is automatically centred, cropped and compressed for M365 signature sync.",
+      photoHelp: "Portrait photos are framed upward to keep the full head, then compressed at high resolution for M365 sync.",
       removePhoto: "Remove photo",
       nameLabel: "Name",
       titleLabel: "Title",
@@ -176,20 +176,26 @@
     const bitmap = await createImageBitmap(file);
     const size = Math.min(bitmap.width, bitmap.height);
     const sourceX = Math.round((bitmap.width - size) / 2);
-    const sourceY = Math.round((bitmap.height - size) / 2);
+    const verticalOverflow = bitmap.height - size;
+    const sourceY = verticalOverflow > 0
+      ? Math.round(verticalOverflow * 0.08)
+      : 0;
+    const outputSize = 256;
     const canvas = document.createElement("canvas");
-    canvas.width = 128;
-    canvas.height = 128;
+    canvas.width = outputSize;
+    canvas.height = outputSize;
     const context = canvas.getContext("2d", { alpha: false });
     context.fillStyle = "#ffffff";
-    context.fillRect(0, 0, 128, 128);
-    context.drawImage(bitmap, sourceX, sourceY, size, size, 0, 0, 128, 128);
+    context.fillRect(0, 0, outputSize, outputSize);
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = "high";
+    context.drawImage(bitmap, sourceX, sourceY, size, size, 0, 0, outputSize, outputSize);
     bitmap.close();
 
-    let quality = 0.78;
+    let quality = 0.88;
     let value = canvas.toDataURL("image/jpeg", quality);
-    while (value.length > 18000 && quality > 0.42) {
-      quality -= 0.08;
+    while (value.length > 24500 && quality > 0.52) {
+      quality -= 0.06;
       value = canvas.toDataURL("image/jpeg", quality);
     }
     return value;

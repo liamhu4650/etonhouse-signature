@@ -5,7 +5,7 @@
 ## 当前原型
 
 - 四种学校类型：HQ、E-Bridge Pre-School、International School、EtonHouse Pre-School。
-- 上传照片后自动居中裁剪为 128 × 128，并压缩至适合 Outlook roaming settings 的大小。
+- 上传照片后自动裁剪为 256 × 256 高清头像；竖版证件照会向上取景以保留头顶，并压缩至适合 Outlook roaming settings 的大小。
 - 姓名、职位、机构、电话、邮箱、网站和地址实时预览。
 - 浏览器中使用本地预览存储；运行在 Outlook 中时使用 `Office.context.roamingSettings`。
 - `OnNewMessageCompose` 事件自动调用 `setSignatureAsync()`。

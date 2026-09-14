@@ -49,13 +49,13 @@
               <img id="photo-thumb" alt="个人照片预览" data-i18n-alt="photoAlt" hidden />
               <span class="photo-placeholder" id="photo-placeholder">
                 <strong data-i18n="uploadPhoto">上传照片</strong>
-                <small data-i18n="squarePhoto">建议使用正方形证件照</small>
+                <small data-i18n="squarePhoto">建议使用竖版或正方形证件照</small>
               </span>
             </label>
             <input id="photo-input" type="file" accept="image/png,image/jpeg,image/webp" hidden />
             <div class="photo-copy">
               <strong data-i18n="personalPhoto">个人照片</strong>
-              <p data-i18n="photoHelp">上传后会自动居中裁剪并压缩，确保可以随 M365 签名同步。</p>
+              <p data-i18n="photoHelp">竖版照片会自动向上取景，保留头顶，并以高清尺寸压缩后随 M365 签名同步。</p>
               <button class="text-button" type="button" id="remove-photo" data-i18n="removePhoto" hidden>移除照片</button>
             </div>
           </div>
@@ -121,6 +121,6 @@
 
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <script src="signature.js?v=20260911-new-template"></script>
-    <script src="app.js?v=20260911-new-template"></script>
+    <script src="app.js?v=20260914-photo-quality"></script>
   </body>
 </html>
