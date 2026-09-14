@@ -75,7 +75,7 @@
           ${photo}
         </td>
         <td width="20" height="148" style="width:20px;height:148px;font-size:0;line-height:0">&nbsp;</td>
-        <td width="348" height="148" style="width:348px;height:148px;padding:5px 0 0;vertical-align:top">
+        <td width="348" height="148" style="width:348px;height:148px;padding:10px 0 0;vertical-align:top">
           <div style="color:#666666;font-family:'Times New Roman',Times,serif;font-size:16pt;font-weight:700;line-height:19pt;white-space:nowrap">${escapeHtml(data.name)}</div>
           <div style="color:#666666;font-family:'Times New Roman',Times,serif;font-size:12pt;font-weight:400;line-height:15pt;white-space:nowrap">${escapeHtml(data.title)}</div>
           <div style="color:#666666;font-family:'Times New Roman',Times,serif;font-size:12pt;font-weight:400;line-height:15pt;white-space:nowrap">${escapeHtml(data.organization)}</div>
