@@ -46,14 +46,16 @@
     return `${String(base || "assets/").replace(/\/?$/, "/")}${fileName}?v=${assetRevision}`;
   }
 
-  function infoRow(iconAsset, value, href, assetBase) {
+  function infoRow(iconAsset, value, href, assetBase, alignToFirstLine = false) {
     if (!value) return "";
     const content = href
       ? `<a href="${escapeHtml(href)}" style="color:#666666;text-decoration:none">${escapeHtml(value)}</a>`
       : escapeHtml(value);
+    const iconPadding = alignToFirstLine ? "3px 0 1px 2px" : "2px 0 1px 2px";
+    const verticalAlign = alignToFirstLine ? "top" : "middle";
     return `<tr>
-      <td width="16" style="width:16px;padding:2px 0 1px 2px;vertical-align:middle"><img src="${escapeHtml(assetUrl(assetBase, iconAsset))}" width="10" height="10" alt="" style="display:block;width:10px;height:10px;border:0" /></td>
-      <td style="padding:0;color:#666666;font-family:'Times New Roman',Times,serif;font-size:10pt;font-weight:400;line-height:12pt;vertical-align:middle">${content}</td>
+      <td width="16" style="width:16px;padding:${iconPadding};vertical-align:${verticalAlign}"><img src="${escapeHtml(assetUrl(assetBase, iconAsset))}" width="10" height="10" alt="" style="display:block;width:10px;height:10px;border:0" /></td>
+      <td style="padding:0;color:#666666;font-family:'Times New Roman',Times,serif;font-size:10pt;font-weight:400;line-height:12pt;vertical-align:${verticalAlign}">${content}</td>
     </tr>`;
   }
 
@@ -73,7 +75,7 @@
           ${photo}
         </td>
         <td width="20" height="148" style="width:20px;height:148px;font-size:0;line-height:0">&nbsp;</td>
-        <td width="348" height="148" style="width:348px;height:148px;padding:5px 0 0;vertical-align:top">
+        <td width="348" height="148" style="width:348px;height:148px;padding:14px 0 0;vertical-align:top">
           <div style="color:#666666;font-family:'Times New Roman',Times,serif;font-size:16pt;font-weight:700;line-height:19pt;white-space:nowrap">${escapeHtml(data.name)}</div>
           <div style="color:#666666;font-family:'Times New Roman',Times,serif;font-size:12pt;font-weight:400;line-height:15pt;white-space:nowrap">${escapeHtml(data.title)}</div>
           <div style="color:#666666;font-family:'Times New Roman',Times,serif;font-size:12pt;font-weight:400;line-height:15pt;white-space:nowrap">${escapeHtml(data.organization)}</div>
@@ -81,7 +83,7 @@
             ${infoRow("icon-phone.png", data.phone, data.phone ? `tel:${String(data.phone).replace(/\s/g, "")}` : "", assetBase)}
             ${infoRow("icon-email.png", data.email, data.email ? `mailto:${data.email}` : "", assetBase)}
             ${infoRow("icon-web.png", data.website, websiteUrl, assetBase)}
-            ${infoRow("icon-address.png", data.address, "", assetBase)}
+            ${infoRow("icon-address.png", data.address, "", assetBase, true)}
           </table>
         </td>
         <td width="252" height="148" style="width:252px;height:148px;padding:8px 0 0;vertical-align:middle">
